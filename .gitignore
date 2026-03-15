@@ -1,3 +1,6 @@
 env
 venv
 .env
+.vscode
+E_COMMERCE_BOT.egg-info
+__pycache__

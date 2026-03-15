@@ -1,0 +1,6 @@
+pandas
+langchain-astradb
+langchain-core
+langchain_google_genai
+numpy
+-e .
