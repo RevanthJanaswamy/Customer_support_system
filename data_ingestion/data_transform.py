@@ -41,6 +41,8 @@ class data_converter:
             documnts.append(doc)
         print(documnts[0])
 
+        return documnts
+
 
 
     
