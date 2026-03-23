@@ -1,6 +1,13 @@
+langchain_astradb
 pandas
-langchain-astradb
-langchain-core
 langchain_google_genai
-numpy
+fastapi 
+uvicorn 
+python-multipart
+jinja2
+python-dotenv 
+langchain 
+langchain_core 
+langchain_groq
+
 -e .

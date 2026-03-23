@@ -1,3 +1,5 @@
+
+#script used only for reference, do not consider it as main script for data transformation
 import pandas as pd
 from langchain_core.documents import Document
 
@@ -27,21 +29,21 @@ class data_converter:
                 "summary": row['summary']
             }
             product_list.append(object)
-        # print("****below is my product list*****")
-        # print(product_list[0])
+        print("****below is my product list*****")
+        print(product_list)
 
-        documnts = []
+        # documnts = []
 
-        for entry in product_list:
+        # for entry in product_list:
 
-            metadata = {"product_name": entry['product_name'], "product_rating": entry['product_rating'],
-            "product_summary": entry['summary'] }
-            #the Document object should be stored in vector db
-            doc = Document(page_content=entry['product_review'], metadata=metadata) 
-            documnts.append(doc)
-        print(documnts[0])
+        #     metadata = {"product_name": entry['product_name'], "product_rating": entry['product_rating'],
+        #     "product_summary": entry['summary'] }
+        #     #the Document object should be stored in vector db
+        #     doc = Document(page_content=entry['product_review'], metadata=metadata) 
+        #     documnts.append(doc)
+        # print(documnts[0])
 
-        return documnts
+        # return documnts
 
 
 

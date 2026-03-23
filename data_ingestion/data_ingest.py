@@ -1,3 +1,5 @@
+# script used only for reference, do not consider it as main script for data ingestion
+
 # Disable SSL verification for httpx (used by AstraDB) to avoid certificate issues
 import os
 os.environ["HTTPX_INSECURE_ALLOW_ALL_HOSTS"] = "1"
@@ -8,7 +10,8 @@ from dotenv import load_dotenv
 import os 
 import pandas as pd
 from data_ingestion.data_transform import data_converter
-from langchain_google_genai import GoogleGenerativeAIEmbeddings
+#from langchain_google_genai import GoogleGenerativeAIEmbeddings
+from langchain_community.embeddings import HuggingFaceEmbeddings
 
 load_dotenv()
 
@@ -40,10 +43,10 @@ class ingest_data:
     def __init__(self):
             
             print("data ingestion class initialized")
-            self.embeddings = GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001")
+            self.embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
             self.data_converter = data_converter()
     
-    def data_ingestion(self,status):    
+    def data_ingestion(self,status="Null"):    
 
             vstore=AstraDBVectorStore(
                   embedding=self.embeddings,
@@ -69,7 +72,12 @@ class ingest_data:
                 
 if __name__ == "__main__":
       ingest_data = ingest_data()
-      vstore, inserted_ids=ingest_data.data_ingestion(None) # we write none because we want to store data for the first time, none means data is not yet stored
+      vstore=ingest_data.data_ingestion("Not none") # we write none because we want to store data for the first time, none means data is not yet stored
                                          #after that we will pass the status as "stored" to avoid storing data again and again in db
-      print(f'Inserted {len(inserted_ids)} documents') 
+      #print(f'Inserted {len(inserted_ids)} documents') 
       
+      results = vstore.similarity_search("Can you tell me the low budget headphone?")
+
+      for res in results:
+        
+        print(f"{res.page_content}{res.metadata}")

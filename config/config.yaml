@@ -1,0 +1,13 @@
+astra_db:
+  collection_name: "Chatbotcom"
+
+embedding_model:
+  provider: "Huggingface"
+  model_name: "all-MiniLM-L6-v2"
+
+retriever:
+  top_k: 10
+
+llm:
+  provider: "google"
+  model_name: "gemini-2.5-flash"
