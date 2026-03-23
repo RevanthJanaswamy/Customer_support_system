@@ -9,7 +9,7 @@ uvicorn main:app --reload --port 8001
 ```
 
 ```
-all the best
+start the ci-cd
 ```
 
 ```
